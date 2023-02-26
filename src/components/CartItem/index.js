@@ -20,15 +20,15 @@ const CartItem = props => (
       }
 
       return (
-        <li className="cart-item" testid="cartItem">
-          <div className="cart-item-info" testid="cartItem">
+        <li className="cart-item" data-testid="cartItem">
+          <div className="cart-item-info" data-testid="cartItem">
             <img src={imageUrl} alt={name} className="cart-item-image" />
-            <h1 testid="cartItem" className="cart-item-desktop-name">
+            <h1 data-testid="cartItem" className="cart-item-desktop-name">
               {name}
             </h1>
           </div>
-          <div className="cart-qty-price-cont" testid="cartItem">
-            <h1 testid="cartItem" className="cart-item-mobile-name">
+          <div className="cart-qty-price-cont" data-testid="cartItem">
+            <h1 data-testid="cartItem" className="cart-item-mobile-name">
               {name}
             </h1>
             <div className="cart-qty-container">
@@ -36,23 +36,23 @@ const CartItem = props => (
                 className="decrement-quantity"
                 type="button"
                 onClick={decreaseQuantity}
-                testid="decrement-quantity"
+                data-testid="decrement-quantity"
               >
                 <BsDashSquare size={16} />
               </button>
-              <p testid="item-quantity" className="item-quantity">
+              <p data-testid="item-quantity" className="item-quantity">
                 {quantity}
               </p>
               <button
                 className="increment-quantity"
                 type="button"
                 onClick={increaseQuantity}
-                testid="increment-quantity"
+                data-testid="increment-quantity"
               >
                 <BsPlusSquare size={16} />
               </button>
             </div>
-            <p className="price" testid="total-price">
+            <p className="price" data-testid="total-price">
               <FaRupeeSign size={12} /> {cost * quantity}
             </p>
           </div>

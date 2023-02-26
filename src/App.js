@@ -1,26 +1,15 @@
 import {Component} from 'react'
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+
 import LoginForm from './components/LoginForm'
+import NotFound from './components/NotFound'
 import Home from './components/Home'
 import RestaurantDetails from './components/RestaurantDetails'
 import Cart from './components/Cart'
 import ProtectedRoute from './components/ProtectedRoute'
-import NotFound from './components/NotFound'
 import CartContext from './context/CartContext'
-import './App.css'
 
-// const sortByOptions = [
-//   {
-//     id: 0,
-//     displayText: 'Highest',
-//     value: 'Highest',
-//   },
-//   {
-//     id: 2,
-//     displayText: 'Lowest',
-//     value: 'Lowest',
-//   },
-// ]
+import './App.css'
 
 const getCartListFromLocalStorage = () => {
   const stringifiedCartList = localStorage.getItem('cartData')
@@ -35,6 +24,11 @@ class App extends Component {
   state = {
     cartList: getCartListFromLocalStorage(),
   }
+
+  /* setToLocalStorage = () => {
+    const {cartList} = this.state
+    localStorage.setItem('cart_list', JSON.stringify(cartList))
+  } */
 
   removeAllCartItems = () => {
     this.setState({cartList: []})
@@ -87,9 +81,11 @@ class App extends Component {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(eachCartItem => {
           if (productObject.id === eachCartItem.id) {
-            const updatedQuantity = eachCartItem.quantity + product.quantity
+            const updatedQuantity = product.quantity
+
             return {...eachCartItem, quantity: updatedQuantity}
           }
+
           return eachCartItem
         }),
       }))
@@ -101,6 +97,8 @@ class App extends Component {
 
   render() {
     const {cartList} = this.state
+    localStorage.setItem('cartData', JSON.stringify(cartList))
+
     return (
       <BrowserRouter>
         <CartContext.Provider
@@ -122,12 +120,13 @@ class App extends Component {
               component={RestaurantDetails}
             />
             <ProtectedRoute exact path="/cart" component={Cart} />
-            <Route Path="/not-found" component={NotFound} />
-            <Redirect to="/not-found" />
+            <Route path="/bad-path" component={NotFound} />
+            <Redirect to="bad-path" />
           </Switch>
         </CartContext.Provider>
       </BrowserRouter>
     )
   }
 }
+
 export default App

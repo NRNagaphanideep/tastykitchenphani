@@ -83,14 +83,14 @@
   }
 }
 
-.decrease-quantity {
+.decrement-quantity {
   background: none;
   border: none;
   outline: none;
   margin: 5px;
   color: #3e4c59;
 }
-.increase-quantity {
+.increment-quantity {
   background: none;
   border: none;
   outline: none;

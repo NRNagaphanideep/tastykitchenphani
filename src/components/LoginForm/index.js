@@ -9,7 +9,12 @@ class LoginForm extends Component {
     username: '',
     password: '',
     showSubmitError: false,
+    isShowPassword: false,
     errorMsg: '',
+  }
+
+  showAndHidePassword = () => {
+    this.setState(pre => ({isShowPassword: !pre.isShowPassword}))
   }
 
   onChangeUsername = event => {
@@ -48,44 +53,44 @@ class LoginForm extends Component {
     }
   }
 
-  renderPasswordField = () => {
-    const {password} = this.state
-    return (
-      <>
-        <label className="input-label" htmlFor="password">
-          PASSWORD
-        </label>
-        <input
-          type="password"
-          id="password"
-          className="password-input-field"
-          value={password}
-          onChange={this.onChangePassword}
-        />
-      </>
-    )
-  }
+  //   renderPasswordField = () => {
+  //     const {password} = this.state
+  //     return (
+  //       <>
+  //         <label className="input-label" htmlFor="password">
+  //           PASSWORD
+  //         </label>
+  //         <input
+  //           type="password"
+  //           id="password"
+  //           className="password-input-field"
+  //           value={password}
+  //           onChange={this.onChangePassword}
+  //         />
+  //       </>
+  //     )
+  //   }
 
-  renderUsernameField = () => {
-    const {username} = this.state
-    return (
-      <>
-        <label className="input-label" htmlFor="username">
-          USERNAME
-        </label>
-        <input
-          type="text"
-          id="username"
-          className="username-input-field"
-          value={username}
-          onChange={this.onChangeUsername}
-        />
-      </>
-    )
-  }
+  //   renderUsernameField = () => {
+  //     const {username} = this.state
+  //     return (
+  //       <>
+  //         <label className="input-label" htmlFor="username">
+  //           USERNAME
+  //         </label>
+  //         <input
+  //           type="text"
+  //           id="username"
+  //           className="username-input-field"
+  //           value={username}
+  //           onChange={this.onChangeUsername}
+  //         />
+  //       </>
+  //     )
+  //   }
 
   render() {
-    const {showSubmitError, errorMsg} = this.state
+    const {showSubmitError, errorMsg, isShowPassword} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -106,8 +111,43 @@ class LoginForm extends Component {
             />
             <h1 className="logo-heading">Tasty Kitchens</h1>
             <h1 className="login-heading">Login</h1>
-            <div className="input-container">{this.renderUsernameField()}</div>
-            <div className="input-container">{this.renderPasswordField()}</div>
+            <div className="input-container">
+              <label htmlFor="userName" className="input-label">
+                USERNAME
+              </label>
+              <input
+                type="text"
+                id="userName"
+                className="username-input-field"
+                onChange={this.onChangeUsername}
+                // value={userName}
+                placeholder="USER NAME"
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="password" className="input-label">
+                PASSWORD
+              </label>
+              <input
+                type={isShowPassword ? 'text' : 'password'}
+                id="password"
+                className="password-input-field"
+                onChange={this.onChangePassword}
+                // value={password}
+                placeholder="PASSWORD"
+              />
+            </div>
+            <div className="show-password-container">
+              <input
+                type="checkbox"
+                id="checkbox"
+                className="checkbox-container"
+                onChange={this.showAndHidePassword}
+              />
+              <label htmlFor="checkbox" className="input-label">
+                SHOW PASSWORD
+              </label>
+            </div>
             <button type="submit" className="login-button">
               Login
             </button>

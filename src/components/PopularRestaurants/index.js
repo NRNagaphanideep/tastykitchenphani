@@ -117,11 +117,11 @@ class PopularRestaurants extends Component {
             type="button"
             className="pagination-button"
             onClick={this.decrementPage}
-            testid="pagination-left-button"
+            data-testid="pagination-left-button"
           >
             <RiArrowDropLeftLine size={20} />
           </button>
-          <p testid="active-page-number" className="page-count">
+          <p data-testid="active-page-number" className="page-count">
             {activePage}
           </p>
           <span
@@ -135,7 +135,7 @@ class PopularRestaurants extends Component {
             type="button"
             className="pagination-button"
             onClick={this.incrementPage}
-            testid="pagination-right-button"
+            data-testid="pagination-right-button"
           >
             <RiArrowDropRightLine size={20} />
           </button>
@@ -145,7 +145,7 @@ class PopularRestaurants extends Component {
   }
 
   renderLoader = () => (
-    <div className="carousel-loader" testid="restaurants-list-loader">
+    <div className="carousel-loader" data-testid="restaurants-list-loader">
       <Loader type="ThreeDots" color="#F7931E" height={50} width={50} />
     </div>
   )

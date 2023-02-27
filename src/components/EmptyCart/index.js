@@ -9,10 +9,8 @@ const EmptyCart = () => (
       alt="empty cart"
       className="empty-cart-image"
     />
-    <h1 className="no-order-heading">No Order Yet!</h1>
-    <p className="no-order-text">
-      Your cart is empty. Add something from the menu.
-    </p>
+    <h1>No Order Yet!</h1>
+    <p>Your cart is empty. Add something from the menu.</p>
     <Link to="/">
       <button type="button" className="order-btn">
         Order Now
